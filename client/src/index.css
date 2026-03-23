@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+/* ══════════════════════════════════════════════════════
+   ANCIENT INDIAN EPICS × CYBER-MINIMALISM
+   Unified Professional Palette: Gold, Peacock Blue, Silver
+══════════════════════════════════════════════════════ */
+
+:root {
+  color-scheme: dark;
+
+  /* Basic Architecture */
+  --bg-cosmic:      #0A0A0E;
+  --border-subtle:  rgba(255, 255, 255, 0.04);
+  --border-metallic:rgba(255, 255, 255, 0.08);
+
+  /* ── Unified Dual-Light Accents ── */
+  /* Dawn & Focus (Right side dominant) */
+  --accent-gold:    #E6A700;
+  --accent-saffron: #D97706;
+  
+  /* Depth & Wisdom (Left side dominant) */
+  --accent-peacock: #003E7E;
+  --accent-cyan:    #06B6D4;
+
+  /* Structure & Stillness */
+  --accent-silver:  #9CA3AF;
+  --accent-ash:     #475569;
+}
+
+html { scroll-behavior: smooth; }
+
+/* ── Cosmic Dual-Light Background ──
+   Warm saffron-gold from right (dawn / Ram's focus)
+   Cool peacock-blue from left (deep wisdom / Krishna)
+   Both extremely faint so content always wins.
+*/
+body {
+  background-color: var(--bg-cosmic);
+  color: #E2E8F0;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 70% 60% at 100% 50%, rgba(230, 167, 0, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 60% at 0% 50%, rgba(0, 62, 126, 0.06) 0%, transparent 70%);
+}
+
+body > * { position: relative; z-index: 1; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; letter-spacing: -0.02em; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+
+/* ── Gradient Text Utilities ── */
+.text-gold-gradient {
+  background: linear-gradient(to right, var(--accent-saffron), var(--accent-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-peacock-gradient {
+  background: linear-gradient(to right, var(--accent-peacock), var(--accent-cyan));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-silver-gradient {
+  background: linear-gradient(to right, var(--accent-ash), var(--accent-silver));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Unified Action Button ── */
+.btn-primary {
+  background: rgba(230, 167, 0, 0.04);
+  border: 1px solid rgba(230, 167, 0, 0.3);
+  box-shadow: 0 0 10px rgba(230, 167, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-primary:hover {
+  background: rgba(230, 167, 0, 0.08);
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 20px rgba(230, 167, 0, 0.25), inset 0 0 10px rgba(230, 167, 0, 0.1);
+  text-shadow: 0 0 8px rgba(230, 167, 0, 0.4);
+}
+
+/* ── Glassmorphism Panels ── */
+.cyber-glass {
+  background: rgba(10, 10, 14, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-metallic);
+}
+.cyber-panel {
+  background: linear-gradient(160deg, rgba(20, 20, 28, 0.7) 0%, rgba(10, 10, 14, 0.9) 100%);
+  border: 1px solid var(--border-metallic);
+  border-top-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+}
+
+/* ── Animations ── */
+@keyframes spin-slow    { 100% { transform: rotate(360deg);  } }
+@keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+.animate-spin-slow    { animation: spin-slow 22s linear infinite;    }
+.animate-spin-reverse { animation: spin-reverse 28s linear infinite; }
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.12; transform: scale(1);    }
+  50%      { opacity: 0.25; transform: scale(1.02); }
+}
+.animate-breathe { animation: breathe 9s ease-in-out infinite; }
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg-cosmic); }
+::-webkit-scrollbar-thumb { background: #1a1c23; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+::selection { background: rgba(230, 167, 0, 0.15); color: #fff; }
