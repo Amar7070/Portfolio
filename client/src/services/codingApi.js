@@ -81,7 +81,7 @@ export const getLeetCodeContests = async (username) => {
         // Process contest history for the last 6 contests
         const allAttended = data.userContestRankingHistory.filter(c => c.attended === true);
         const contestHistory = allAttended
-            .slice(-6)
+            .slice(-10)
             .map(contest => ({
                 name: contest.contest.title.split(' ').pop(),
                 rating: Math.round(contest.rating),
@@ -97,9 +97,15 @@ export const getLeetCodeContests = async (username) => {
             });
         }
 
+        // Find absolute peak rating from entire history
+        const peakRating = allAttended.length > 0 
+            ? Math.round(Math.max(...allAttended.map(c => c.rating)))
+            : 0;
+            
         return {
             data: {
                 currentRating: Math.round(data.userContestRanking.rating),
+                peakRating: peakRating,
                 globalRanking: data.userContestRanking.globalRanking,
                 attendedContests: data.userContestRanking.attendedContestsCount,
                 contestHistory

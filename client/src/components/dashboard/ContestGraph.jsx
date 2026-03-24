@@ -47,12 +47,20 @@ const ContestGraph = ({ contestData }) => {
         >
             <div className="flex justify-between items-center mb-6 border-b border-white/5 pb-4">
                 <h4 className="text-sm font-bold text-gray-400 uppercase tracking-widest">Contest Performance</h4>
-                {contestData?.currentRating && (
-                    <div className="text-right">
-                        <div className="text-xs text-gray-500">Current Rating</div>
-                        <div className="text-lg font-bold text-[#E6A700]">{contestData.currentRating}</div>
-                    </div>
-                )}
+                <div className="flex gap-6 items-center">
+                    {contestData?.currentRating && (
+                        <div className="text-right">
+                            <div className="text-[10px] text-gray-500 uppercase tracking-tight">Current</div>
+                            <div className="text-base font-bold text-[#E6A700]">{contestData.currentRating}</div>
+                        </div>
+                    )}
+                    {contestData?.peakRating && (
+                        <div className="text-right">
+                            <div className="text-[10px] text-gray-500 uppercase tracking-tight">Peak</div>
+                            <div className="text-base font-bold text-emerald-500">{contestData.peakRating}</div>
+                        </div>
+                    )}
+                </div>
             </div>
             <div className="w-full" style={{ height: '192px', minHeight: '192px' }}>
                 {isMounted && data && data.length > 0 ? (

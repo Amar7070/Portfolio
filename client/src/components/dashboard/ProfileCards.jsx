@@ -111,7 +111,7 @@ const ProfileCards = ({ data }) => {
             stats: [
                 { label: "Solved", value: safeData.leetcode?.totalSolved || 104 },
                 { label: "Easy", value: safeData.leetcode?.easySolved || 58 },
-                { label: "Global Rank", value: safeData.leetcode?.ranking || 'N/A' },
+                { label: "Peak Rating", value: safeData.contests?.peakRating || 1500 },
                 { label: "Med/Hard", value: (safeData.leetcode?.mediumSolved || 0) + (safeData.leetcode?.hardSolved || 0) || 46 }
             ]
         },
