@@ -68,8 +68,8 @@ const model = genAI.getGenerativeModel({
 app.get('/api/health', (req, res) => {
     const distPath = path.join(__dirname, '../client/dist');
     const indexExists = fs.existsSync(path.join(distPath, 'index.html'));
-    res.json({ 
-        status: 'ok', 
+    res.json({
+        status: 'ok',
         message: 'Core systems operational',
         timestamp: new Date().toISOString(),
         buildStatus: {
@@ -135,7 +135,7 @@ app.post('/api/leetcode', async (req, res) => {
     try {
         const { username } = req.body;
         const query = 'query getUserProfile($username: String!) { matchedUser(username: $username) { username profile { realName userAvatar reputation ranking } submitStats { acSubmissionNum { difficulty count submissions } } } }';
-        
+
         const response = await axios.post('https://leetcode.com/graphql', {
             query,
             variables: { username }
@@ -145,29 +145,30 @@ app.post('/api/leetcode', async (req, res) => {
                 'User-Agent': 'Portfolio-App'
             }
         });
-        
+
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 });
 
-// LeetCode Active Days - Get recent submissions to calculate real active days
+// LeetCode Activity - Get calendar and real active days
 app.post('/api/leetcode-activity', async (req, res) => {
     try {
         const { username } = req.body;
         const query = `
-            query getUserRecentSubmissions($username: String!) {
-                recentSubmissionList(username: $username, limit: 100) {
-                    title
-                    titleSlug
-                    timestamp
-                    statusDisplay
-                    lang
+            query getUserCalendar($username: String!) {
+                matchedUser(username: $username) {
+                    userCalendar {
+                        activeYears
+                        streak
+                        totalActiveDays
+                        submissionCalendar
+                    }
                 }
             }
         `;
-        
+
         const response = await axios.post('https://leetcode.com/graphql', {
             query,
             variables: { username }
@@ -177,23 +178,50 @@ app.post('/api/leetcode-activity', async (req, res) => {
                 'User-Agent': 'Portfolio-App'
             }
         });
-        
-        // Calculate unique active days from submissions
-        const submissions = response.data.data.recentSubmissionList || [];
-        const uniqueDays = new Set();
-        
-        submissions.forEach(submission => {
-            if (submission.statusDisplay === 'Accepted') {
-                const date = new Date(submission.timestamp * 1000);
-                const dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD format
-                uniqueDays.add(dateString);
-            }
-        });
-        
+
+        const calendarData = response.data.data.matchedUser;
+        if (!calendarData || !calendarData.userCalendar) {
+             return res.status(404).json({ error: "User or Calendar not found" });
+        }
+
+        const { streak, totalActiveDays, submissionCalendar } = calendarData.userCalendar;
+        const parsedCalendar = JSON.parse(submissionCalendar);
+
+        const heatmapData = [];
+        const today = new Date();
+        const oneYearAgo = new Date();
+        oneYearAgo.setDate(today.getDate() - 365);
+
+        // Generate past 365 days
+        for (let d = new Date(oneYearAgo); d <= today; d.setDate(d.getDate() + 1)) {
+            const dateString = d.toISOString().split('T')[0];
+            heatmapData.push({
+                date: dateString,
+                count: 0,
+                level: 0
+            });
+        }
+
+        for (const [timestamp, count] of Object.entries(parsedCalendar)) {
+             const date = new Date(parseInt(timestamp) * 1000);
+             const dateString = date.toISOString().split('T')[0];
+             
+             const dayData = heatmapData.find(d => d.date === dateString);
+             if (dayData) {
+                 dayData.count = count;
+                 let level = 0;
+                 if (count > 0) level = 1;
+                 if (count >= 3) level = 2;
+                 if (count >= 5) level = 3;
+                 if (count >= 10) level = 4;
+                 dayData.level = level;
+             }
+        }
+
         res.json({
-            activeDays: uniqueDays.size,
-            totalSubmissions: submissions.length,
-            recentSubmissions: submissions.slice(0, 10) // Return last 10 submissions
+            activeDays: totalActiveDays,
+            streak,
+            heatmapData
         });
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -232,17 +260,17 @@ app.get('/api/gfg/:username', async (req, res) => {
     try {
         const { username } = req.params;
         const cacheKey = `gfg_${username}`;
-        
+
         // Check cache first
         const cached = getCached(cacheKey);
         if (cached) {
             console.log(`[Cache] Serving cached GFG data for ${username}`);
             return res.json(cached);
         }
-        
+
         // Try the geeksforgeeks scraper API
         let data = null;
-        
+
         try {
             const response = await axios.get(`https://geeks-for-geeks-stats-api.vercel.app/?userName=${username}`, { timeout: 5000 });
             if (response.data && !response.data.error) {
@@ -251,7 +279,7 @@ app.get('/api/gfg/:username', async (req, res) => {
         } catch (e) {
             console.warn('GFG API attempt failed:', e.message);
         }
-        
+
         // If API failed, return hardcoded real data for known users
         if (!data) {
             data = {
@@ -262,7 +290,7 @@ app.get('/api/gfg/:username', async (req, res) => {
                 userName: username
             };
         }
-        
+
         setCache(cacheKey, data);
         res.json(data);
     } catch (error) {
@@ -297,24 +325,24 @@ app.get('/api/github/:username', async (req, res) => {
     try {
         const { username } = req.params;
         const cacheKey = `github_${username}`;
-        
+
         // Check cache first
         const cached = getCached(cacheKey);
         if (cached) {
             console.log(`[Cache] Serving cached GitHub data for ${username}`);
             return res.json(cached);
         }
-        
+
         const githubHeaders = {
             'User-Agent': 'Portfolio-App',
             ...(process.env.GITHUB_TOKEN && { 'Authorization': `Bearer ${process.env.GITHUB_TOKEN}` })
         };
-        
+
         // Get basic user info (now WITH auth token)
         const userResponse = await axios.get(`https://api.github.com/users/${username}`, {
             headers: githubHeaders
         });
-        
+
         // Get contribution data using GraphQL
         const contributionQuery = `
             query($username: String!) {
@@ -333,7 +361,7 @@ app.get('/api/github/:username', async (req, res) => {
                 }
             }
         `;
-        
+
         const contributionResponse = await axios.post('https://api.github.com/graphql', {
             query: contributionQuery,
             variables: { username }
@@ -343,20 +371,20 @@ app.get('/api/github/:username', async (req, res) => {
                 'User-Agent': 'Portfolio-App'
             }
         });
-        
+
         // Calculate active days (days with contributions > 0)
         const contributions = contributionResponse.data.data.user.contributionsCollection.contributionCalendar;
         const activeDays = contributions.weeks.reduce((total, week) => {
             return total + week.contributionDays.filter(day => day.contributionCount > 0).length;
         }, 0);
-        
+
         // Combine data
         const combinedData = {
             ...userResponse.data,
             totalContributions: contributions.totalContributions,
             activeDays: activeDays
         };
-        
+
         setCache(cacheKey, combinedData);
         res.json(combinedData);
     } catch (error) {
@@ -366,7 +394,7 @@ app.get('/api/github/:username', async (req, res) => {
             const cacheKey = `github_basic_${req.params.username}`;
             const cached = getCached(cacheKey);
             if (cached) return res.json(cached);
-            
+
             const userResponse = await axios.get(`https://api.github.com/users/${req.params.username}`, {
                 headers: {
                     'User-Agent': 'Portfolio-App',
@@ -389,8 +417,8 @@ app.get('/api/github/:username', async (req, res) => {
 app.post('/api/leetcode-contests', async (req, res) => {
     try {
         const { username } = req.body;
-        const query = 'query getUserContestRankingInfo($username: String!) { userContestRanking(username: $username) { attendedContestsCount rating globalRanking totalParticipants topPercentage } userContestRankingHistory(username: $username) { contest { title startTime } rating ranking } }';
-        
+        const query = 'query getUserContestRankingInfo($username: String!) { userContestRanking(username: $username) { attendedContestsCount rating globalRanking totalParticipants topPercentage } userContestRankingHistory(username: $username) { attended contest { title startTime } rating ranking } }';
+
         const response = await axios.post('https://leetcode.com/graphql', {
             query,
             variables: { username }
@@ -400,7 +428,7 @@ app.post('/api/leetcode-contests', async (req, res) => {
                 'User-Agent': 'Portfolio-App'
             }
         });
-        
+
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: error.message });

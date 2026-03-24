@@ -74,14 +74,14 @@ const ServiceCard = ({ icon, title, description, benefits, isActive, idx }) => (
 
 const Services = () => {
     return (
-        <section id="services" className="py-24 bg-[var(--bg-cosmic)] relative overflow-hidden">
+        <section id="services" className="py-12 md:py-16 bg-[var(--bg-cosmic)] relative overflow-hidden">
             <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.015]" 
                  style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #E6A700 10px, #E6A700 11px)' }} />
                  
             <CyberTrishulWatermark />
 
             <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
-                <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/5 pb-8">
+                <div className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-white/5 pb-8">
                     <div>
                         <div className="inline-flex items-center gap-3 px-3 py-1 bg-white/[0.02] border border-white/5 rounded-sm mb-6 relative">
                             <span className="w-1.5 h-1.5 bg-[#E6A700] shadow-[0_0_8px_#E6A700] rounded-sm animate-pulse" />

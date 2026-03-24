@@ -123,10 +123,10 @@ const ProfileCards = ({ data }) => {
             link: `https://www.codechef.com/users/${USERNAMES.codechef}`,
             delay: 0.3,
             stats: [
-                { label: "Rating", value: safeData.codechef?.currentRating || 1226 },
-                { label: "Stars", value: safeData.codechef?.stars || '1', suffix: "★" },
-                { label: "Global", value: safeData.codechef?.globalRank || 80702 },
-                { label: "Country", value: safeData.codechef?.countryRank || 76404 }
+                { label: "Rating", value: safeData.codechef?.currentRating || 1410 },
+                { label: "Stars", value: safeData.codechef?.stars || '2', suffix: "★" },
+                { label: "Global", value: safeData.codechef?.globalRank || 43239 },
+                { label: "Country", value: safeData.codechef?.countryRank || 40266 }
             ]
         },
         {
@@ -137,9 +137,9 @@ const ProfileCards = ({ data }) => {
             link: `https://www.geeksforgeeks.org/user/${USERNAMES.gfg}/`,
             delay: 0.4,
             stats: [
-                { label: "Score", value: safeData.gfg?.overall_coding_score || 239 },
-                { label: "Solved", value: safeData.gfg?.total_problems_solved || 80 },
-                { label: "Inst. Rank", value: safeData.gfg?.institute_rank || 6739 },
+                { label: "Score", value: safeData.gfg?.overall_coding_score || 158 },
+                { label: "Solved", value: safeData.gfg?.total_problems_solved || 41 },
+                { label: "Inst. Rank", value: safeData.gfg?.institute_rank || 7840 },
                 { label: "Articles", value: safeData.gfg?.articles_published || 0 }
             ]
         },

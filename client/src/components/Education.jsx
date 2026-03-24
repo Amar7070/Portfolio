@@ -21,7 +21,7 @@ const Education = () => {
   }, [selectedItem]);
 
   return (
-    <section id="education" className="py-24 bg-[var(--bg-cosmic)] relative overflow-hidden border-t border-white/5">
+    <section id="education" className="py-12 md:py-16 bg-[var(--bg-cosmic)] relative overflow-hidden border-t border-white/5">
 
       {/* Background Ambience */}
       <BodhiGurukulBackground />
@@ -29,7 +29,7 @@ const Education = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full">
 
         {/* ── Header ── */}
-        <div className="mb-20 grid lg:grid-cols-2 gap-12 items-end">
+        <div className="mb-12 grid lg:grid-cols-2 gap-12 items-end">
           <div>
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-[rgba(10,10,14,0.6)] backdrop-blur border border-white/10 rounded-full mb-6 relative cursor-default">
               <span className="relative flex h-2 w-2">
@@ -51,7 +51,7 @@ const Education = () => {
         </div>
 
         {/* ── Vertical Timeline Registry ── */}
-        <div ref={containerRef} className="relative mb-32 max-w-4xl mx-auto lg:mx-0">
+        <div ref={containerRef} className="relative mb-16 max-w-4xl mx-auto lg:mx-0">
 
           {/* Static Background Spine */}
           <div className="absolute left-[20px] md:left-[24px] top-4 bottom-4 w-px bg-white/[0.05]" />

@@ -68,7 +68,6 @@ export const skills = {
   backend: [
     { name: "Node.js", icon: "FaNode", color: "#68a063" },
     { name: "Express.js", icon: "SiExpress", color: "#ffffff" },
-    { name: "Java", icon: "FaJava", color: "#007396" },
     { name: "PHP", icon: "FaPhp", color: "#777bb4" },
     { name: "MySQL", icon: "SiMysql", color: "#4479a1" },
     { name: "MongoDB", icon: "FaDatabase", color: "#47A248" }
@@ -76,12 +75,16 @@ export const skills = {
   programming: [
     { name: "C", icon: "SiC", color: "#A8B9CC" },
     { name: "C++", icon: "SiCplusplus", color: "#00599C" },
+    { name: "Java", icon: "FaJava", color: "#007396" },
     { name: "Python", icon: "FaPython", color: "#3776AB" },
     { name: "Problem Solving", icon: "FaTerminal", color: "#ffffff" }
   ],
   tools: [
     { name: "Git", icon: "FaGitAlt", color: "#F05032" },
-    { name: "GitHub", icon: "FaGithub", color: "#ffffff" }
+    { name: "GitHub", icon: "FaGithub", color: "#ffffff" },
+    { name: "Postman", icon: "SiPostman", color: "#ffffff" },
+    { name: "Docker", icon: "FaDocker", color: "#ffffff" },
+    { name: "Kubernetes", icon: "SiKubernetes", color: "#ffffff" }
   ]
 };
 
@@ -98,9 +101,9 @@ export const projects = [
       "Implemented engaging dynamic charts to isolate time inefficiencies"
     ],
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    github_link: "https://github.com/Amar7070",
-    project_link: "#",
-    image_url: "/images/Anarchy-Bay.png"
+    github_link: "https://github.com/Ashutosh-kumar-2004/Time-Analysis-and-Productivity",
+    project_link: "https://productivity-tracker-aky.vercel.app/",
+    image_url: "/images/timeAnalysis.png"
   },
   {
     id: "02",
@@ -114,10 +117,10 @@ export const projects = [
       "Implemented optimized logic ensuring real-time UI updates seamlessly matching backend states"
     ],
     tech: ["PHP", "MySQL", "JavaScript", "Tailwind CSS"],
-    github_link: "https://github.com/Amar7070",
+    github_link: "https://github.com/Amar7070/shopping-cart",
     project_link: "#",
-    image_url: "/images/NexaMart.png"
-  },
+    image_url: "/images/ShoppingCart.png"
+  }, 
   {
     id: "03",
     title: "Page Replacement Simulator",
@@ -130,9 +133,9 @@ export const projects = [
       "Built an intuitive dashboard for immediate algorithmic comprehension for computer science students"
     ],
     tech: ["JavaScript", "Chart.js", "HTML", "CSS"],
-    github_link: "https://github.com/Amar7070",
-    project_link: "#",
-    image_url: "/images/IPC.png"
+    github_link: "https://github.com/Amar7070/Page-Replacement-Algorithm-Simulator",
+    project_link: "https://page-replacement-algorithm-simulato-blush.vercel.app/",
+    image_url: "/images/pageReplace.png"
   }
 ];
 

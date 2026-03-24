@@ -5,10 +5,10 @@ const Preloader = () => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        // Animations finish around 1.8s. We wait 2 seconds after that before removing.
+        // Animations finish around 1.8s. We wait a bit more for a smooth exit.
         const timer = setTimeout(() => {
             setIsLoading(false);
-        }, 4000);
+        }, 2200); // Reduced from 4000ms to 2200ms for faster first paint
         return () => clearTimeout(timer);
     }, []);
 

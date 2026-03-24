@@ -1,8 +1,8 @@
 import axios from "axios";
 
 // Absolute backend URL for cross-domain support (Render backend)
-const BACKEND_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:5000' 
+const BACKEND_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000'
     : 'https://portfolio-ewq8.onrender.com';
 
 // Configure axial base
@@ -22,6 +22,7 @@ export const getLeetCode = async (username) => {
         const stats = user.submitStats.acSubmissionNum;
         // Use the "All" count directly instead of summing all difficulties (which includes "All")
         const totalSolved = stats.find(s => s.difficulty === 'All')?.count || 0;
+        const totalSubmissions = stats.find(s => s.difficulty === 'All')?.submissions || 0;
         const easySolved = stats.find(s => s.difficulty === 'Easy')?.count || 0;
         const mediumSolved = stats.find(s => s.difficulty === 'Medium')?.count || 0;
         const hardSolved = stats.find(s => s.difficulty === 'Hard')?.count || 0;
@@ -29,6 +30,7 @@ export const getLeetCode = async (username) => {
         return {
             data: {
                 totalSolved,
+                totalSubmissions,
                 easySolved,
                 mediumSolved,
                 hardSolved,
@@ -77,14 +79,23 @@ export const getLeetCodeContests = async (username) => {
         }
 
         // Process contest history for the last 6 contests
-        const contestHistory = data.userContestRankingHistory
+        const allAttended = data.userContestRankingHistory.filter(c => c.attended === true);
+        const contestHistory = allAttended
             .slice(-6)
             .map(contest => ({
                 name: contest.contest.title.split(' ').pop(),
                 rating: Math.round(contest.rating),
-                date: new Date(contest.contest.startTime * 1000).toLocaleDateString()
-            }))
-            .reverse();
+                date: new Date(contest.contest.startTime * 1000).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })
+            }));
+
+        // If the user's entire history fits in the graph, prepend the initial 1500 rating point
+        if (allAttended.length <= 6 && allAttended.length > 0) {
+            contestHistory.unshift({
+                name: 'Initial',
+                rating: 1500,
+                date: 'Start'
+            });
+        }
 
         return {
             data: {

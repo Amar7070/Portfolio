@@ -1,14 +1,16 @@
 import React, { useRef, useEffect } from 'react';
-import { GitHubCalendar } from 'react-github-calendar';
+import { ActivityCalendar } from 'react-activity-calendar';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 import { motion } from 'framer-motion';
-import { USERNAMES } from '../../services/statsService';
 
-const ActivityHeatmap = () => {
+import 'react-tooltip/dist/react-tooltip.css';
+
+const ActivityHeatmap = ({ data }) => {
     const scrollRef = useRef(null);
 
     const explicitTheme = {
-        light: ['#161b22', '#0e4429', '#006d32', '#26a641', '#39d353'],
-        dark: ['#161b22', '#1a3b5c', '#155d8f', '#107fc2', '#0055FF'], // Custom blue theme
+        light: ['#1c1c1e', '#7a6015', '#a37c15', '#cca315', '#f5c615'],
+        dark: ['#1c1c1e', '#4d3a08', '#80610d', '#b38812', '#e6a700'], // LeetCode gold theme matching target graph background
     };
 
     // Auto-scroll to the right to show recent contributions
@@ -19,27 +21,40 @@ const ActivityHeatmap = () => {
             }
         }, 500);
         return () => clearTimeout(timer);
-    }, []);
+    }, [data]);
 
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-[#0a0a0c] p-6 rounded-xl border border-white/10 group hover:border-[#0055FF]/30 transition-colors w-full"
+            className="w-full relative"
         >
-            <h4 className="text-sm font-bold text-gray-400 mb-6 uppercase tracking-widest border-b border-white/5 pb-4">Contribution Heatmap</h4>
             <div ref={scrollRef} className="overflow-x-auto" style={{ scrollBehavior: 'smooth' }}>
-                <div className="flex justify-center md:block min-w-fit">
-                    <GitHubCalendar
-                        username={USERNAMES.github}
-                        colorScheme="dark"
-                        theme={explicitTheme}
-                        blockSize={12}
-                        blockMargin={4}
-                        fontSize={10}
-                        hideMonthLabels={false}
-                    />
+                <div className="flex justify-center md:block min-w-fit pt-2">
+                    {data && data.length > 0 ? (
+                        <>
+                            <ActivityCalendar
+                                data={data}
+                                colorScheme="dark"
+                                theme={explicitTheme}
+                                blockSize={14}
+                                blockRadius={3}
+                                blockMargin={5}
+                                fontSize={10}
+                                hideMonthLabels={false}
+                                renderBlock={(block, activity) => React.cloneElement(block, {
+                                    'data-tooltip-id': 'react-tooltip',
+                                    'data-tooltip-html': `${activity.count} submissions on ${activity.date}`,
+                                })}
+                            />
+                            <ReactTooltip id="react-tooltip" style={{ backgroundColor: '#222', color: '#fff', borderRadius: '4px', fontSize: '12px' }} />
+                        </>
+                    ) : (
+                         <div className="h-[140px] flex items-center justify-center text-gray-500 font-mono text-sm leading-relaxed text-center">
+                             Loading activity...
+                         </div>
+                    )}
                 </div>
             </div>
         </motion.div>

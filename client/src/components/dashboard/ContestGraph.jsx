@@ -11,13 +11,21 @@ const ContestGraph = ({ contestData }) => {
 
     // Use real contest data if available, otherwise fallback to sample data
     const data = contestData?.contestHistory || [
-        { name: 'Jan', rating: 1200 },
-        { name: 'Feb', rating: 1350 },
-        { name: 'Mar', rating: 1400 },
-        { name: 'Apr', rating: 1550 },
-        { name: 'May', rating: 1520 },
-        { name: 'Jun', rating: 1680 },
+        { date: 'Jan 2023', rating: 1200 },
+        { date: 'Feb 2023', rating: 1350 },
+        { date: 'Mar 2023', rating: 1400 },
+        { date: 'Apr 2023', rating: 1550 },
+        { date: 'May 2023', rating: 1520 },
+        { date: 'Jun 2023', rating: 1680 },
     ];
+
+    // Compute Y-axis ticks to start at 1400 and increment by 20
+    const maxRating = Math.max(...data.map(d => d.rating), 1400);
+    const maxTick = Math.ceil(maxRating / 20) * 20;
+    const yTicks = [];
+    for (let i = 1400; i <= maxTick; i += 20) {
+        yTicks.push(i);
+    }
 
     return (
         <motion.div
@@ -31,21 +39,29 @@ const ContestGraph = ({ contestData }) => {
                 {contestData?.currentRating && (
                     <div className="text-right">
                         <div className="text-xs text-gray-500">Current Rating</div>
-                        <div className="text-lg font-bold text-[#0055FF]">{contestData.currentRating}</div>
+                        <div className="text-lg font-bold text-[#E6A700]">{contestData.currentRating}</div>
                     </div>
                 )}
             </div>
             <div className="w-full" style={{ height: '192px', minHeight: '192px' }}>
                 {isMounted && data && data.length > 0 ? (
                     <ResponsiveContainer width="100%" height="100%">
-                        <LineChart data={data}>
-                            <XAxis dataKey="name" stroke="#666" fontSize={10} tickLine={false} axisLine={false} />
-                            <YAxis stroke="#666" fontSize={10} tickLine={false} axisLine={false} width={40} />
+                        <LineChart data={data} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                            <XAxis dataKey="date" stroke="#666" fontSize={10} tickLine={false} axisLine={false} />
+                            <YAxis 
+                                stroke="#666" 
+                                fontSize={10} 
+                                tickLine={false} 
+                                axisLine={false} 
+                                width={40} 
+                                domain={[1400, maxTick]} 
+                                ticks={yTicks}
+                            />
                             <Tooltip
                                 contentStyle={{ backgroundColor: '#111', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}
-                                itemStyle={{ color: '#0055FF', fontWeight: 'bold' }}
+                                itemStyle={{ color: '#E6A700', fontWeight: 'bold' }}
                             />
-                            <Line type="monotone" dataKey="rating" stroke="#0055FF" strokeWidth={3} dot={{ r: 4, fill: '#0055FF' }} activeDot={{ r: 6 }} />
+                            <Line type="monotone" dataKey="rating" stroke="#E6A700" strokeWidth={3} dot={{ r: 4, fill: '#E6A700' }} activeDot={{ r: 6 }} />
                         </LineChart>
                     </ResponsiveContainer>
                 ) : (
@@ -56,7 +72,7 @@ const ContestGraph = ({ contestData }) => {
             </div>
 
             {/* Decorative Glare */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#0055FF]/10 blur-3xl pointer-events-none"></div>
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#E6A700]/10 blur-3xl pointer-events-none"></div>
         </motion.div>
     );
 };

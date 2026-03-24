@@ -64,7 +64,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-32 bg-[#050608] relative overflow-hidden border-t border-white/5 selection:bg-[#E6A700] selection:text-black min-h-screen">
+        <section id="contact" className="py-16 md:py-20 bg-[#050608] relative overflow-hidden border-t border-white/5 selection:bg-[#E6A700] selection:text-black min-h-screen">
 
             <InboundContactBackground />
 

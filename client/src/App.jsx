@@ -4,20 +4,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 import { lazy, Suspense } from 'react';
 
-// Main Sections
+// Main Fixed Components (Eager)
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import CodingDashboard from './components/dashboard/CodingDashboard';
-import Skills from './components/Skills';
-import Education from './components/Education';
-import Projects from './components/Projects';
-import Services from './components/Services';
-import Contact from './components/Contact';
+import Preloader from './components/Preloader';
 import CommandPalette from './components/CommandPalette';
 import ChatBot from './components/ChatBot';
-import Preloader from './components/Preloader';
 
-// Lazy Loaded Secondary Pages for Performance
+// Lazy Loaded Sections for Faster First Meaningful Paint
+const CodingDashboard = lazy(() => import('./components/dashboard/CodingDashboard'));
+const Skills = lazy(() => import('./components/Skills'));
+const Education = lazy(() => import('./components/Education'));
+const Projects = lazy(() => import('./components/Projects'));
+const Services = lazy(() => import('./components/Services'));
+const Contact = lazy(() => import('./components/Contact'));
+
+// Lazy Loaded Secondary Pages
 const AllProjects = lazy(() => import('./pages/AllProjects'));
 const Now = lazy(() => import('./pages/Now'));
 const Lab = lazy(() => import('./pages/Lab'));
@@ -33,6 +35,15 @@ const SectionReveal = ({ children, delay = 0 }) => (
   >
     {children}
   </motion.section>
+);
+
+// Small shim for lazy sections
+const LazySection = ({ children, delay }) => (
+  <Suspense fallback={<div className="h-[400px] w-full bg-[#050608]" />}>
+    <SectionReveal delay={delay}>
+      {children}
+    </SectionReveal>
+  </Suspense>
 );
 
 function App() {
@@ -52,12 +63,9 @@ function App() {
         setIsCmdOpen(prev => !prev);
       }
     };
-
     const handleCustomToggle = () => setIsCmdOpen(prev => !prev);
-
     window.addEventListener('keydown', handleKeyDown);
     window.addEventListener('toggleCmdPalette', handleCustomToggle);
-
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('toggleCmdPalette', handleCustomToggle);
@@ -68,8 +76,6 @@ function App() {
     <div className="bg-[#050608] min-h-screen text-gray-300 font-sans selection:bg-[#E6A700] selection:text-black relative overflow-x-hidden">
 
       <Preloader />
-
-      {/* Cursor removed for performance */}
 
       {location.pathname !== '/resume' && <Navbar />}
 
@@ -82,19 +88,21 @@ function App() {
               exit={{ opacity: 0 }}
             >
               <main className="relative flex-grow">
+                {/* Hero is Eager for LCP */}
                 <SectionReveal><Hero /></SectionReveal>
                 
-                <SectionReveal delay={0.1}>
-                    <div id="problem-solving">
-                      <CodingDashboard />
-                    </div>
-                </SectionReveal>
+                {/* Other sections are Lazy for Bundle Splitting */}
+                <LazySection delay={0.1}>
+                  <div id="problem-solving">
+                    <CodingDashboard />
+                  </div>
+                </LazySection>
 
-                <SectionReveal delay={0.2}><Skills /></SectionReveal>
-                <SectionReveal delay={0.2}><Services /></SectionReveal>
-                <SectionReveal delay={0.2}><Projects /></SectionReveal>
-                <SectionReveal delay={0.2}><Education /></SectionReveal>
-                <SectionReveal delay={0.2}><Contact /></SectionReveal>
+                <LazySection delay={0.2}><Skills /></LazySection>
+                <LazySection delay={0.2}><Services /></LazySection>
+                <LazySection delay={0.2}><Projects /></LazySection>
+                <LazySection delay={0.2}><Education /></LazySection>
+                <LazySection delay={0.2}><Contact /></LazySection>
               </main>
             </motion.div>
           } />

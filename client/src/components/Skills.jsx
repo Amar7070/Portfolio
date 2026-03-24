@@ -105,14 +105,14 @@ const Skills = () => {
     const [selectedAstra, setSelectedAstra] = useState(null);
 
     return (
-        <section id="skills" className="py-24 relative overflow-hidden bg-[#0A0A0E] border-t border-white/5">
+        <section id="skills" className="py-12 md:py-16 relative overflow-hidden bg-[#0A0A0E] border-t border-white/5">
 
             <DivineArmoryBackground />
 
             <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 lg:p-4">
 
                 {/* Intro Block */}
-                <div className="mb-24 grid lg:grid-cols-2 gap-12 items-end">
+                <div className="mb-12 grid lg:grid-cols-2 gap-6 items-end">
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -201,32 +201,7 @@ const Skills = () => {
                     ))}
                 </motion.div>
 
-                {/* Advanced Metrics Footer */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="mt-24 border-t border-white/5 pt-10 grid grid-cols-2 md:grid-cols-4 gap-8"
-                >
-                    <div className="flex flex-col gap-2">
-                        <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest">Total Skill Vectors</span>
-                        <span className="text-2xl font-black text-white">{skills.frontend.length + skills.backend.length + skills.programming.length + (skills.tools?.length || 0)}</span>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest">Architecture Sync</span>
-                        <span className="text-xs font-bold text-[#E6A700] flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-[#E6A700] animate-pulse" /> 100% OPERATIONAL
-                        </span>
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest">Global Taxonomy</span>
-                        <span className="text-xs font-bold text-white">INDUSTRY STANDARD</span>
-                    </div>
-                    <div className="flex flex-col gap-2 text-right md:text-left">
-                        <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest">Last Indexing</span>
-                        <span className="text-xs font-bold text-slate-400 font-mono">2024.03.22</span>
-                    </div>
-                </motion.div>
+
 
             </div>
 

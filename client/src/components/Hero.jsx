@@ -44,7 +44,7 @@ const BackgroundWatermark = () => (
 
 const Hero = () => {
   return (
-    <section id="home" className="relative w-full pt-28 md:pt-32 pb-16 overflow-hidden bg-[var(--bg-cosmic)] border-b border-white/5">
+    <section id="home" className="relative w-full pt-28 md:pt-32 pb-10 overflow-hidden bg-[var(--bg-cosmic)] border-b border-white/5">
 
       {/* ── Background Glows ── */}
       <div className="absolute top-[10%] right-[10%] w-[600px] h-[600px] bg-[rgba(230,167,0,0.03)] rounded-full blur-[160px] pointer-events-none z-0" />
@@ -79,7 +79,7 @@ const Hero = () => {
               </span>
             </h1>
 
-            <p className="text-base md:text-lg text-slate-400 font-medium leading-relaxed max-w-xl mb-12 border-l-2 border-white/10 pl-6">
+            <p className="text-base md:text-lg text-slate-400 font-medium leading-relaxed max-w-xl mb-8 border-l-2 border-white/10 pl-6">
               I'm Amar Sahani, a full-stack engineer blending modern architectures with robust logic. I build high-performance web applications designed for scale, precision, and immersive user experiences.
             </p>
 
@@ -138,7 +138,14 @@ const Hero = () => {
                 {/* Embedded Image fading to black */}
                 <div className="absolute inset-0 h-[70%] overflow-hidden">
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0E]/50 to-[#0A0A0E] pointer-events-none z-10" />
-                  <img src="/images/ppp.jpg" alt="Amar Sahani" className="w-full h-full object-cover object-top origin-top filter grayscale-[20%] contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out" />
+                  <img 
+                    src="/images/ppp.jpg" 
+                    alt="Amar Sahani" 
+                    loading="eager"
+                    fetchpriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover object-top origin-top filter grayscale-[20%] contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out" 
+                  />
                 </div>
 
                 {/* Abstract Data Overlay inside monolithic block */}
