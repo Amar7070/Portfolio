@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Piyush Kumar</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    /* Slide Text Animation */
+    .slide-text {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: slideUp 1s ease forwards;
+    }
+
+    @keyframes slideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Rotating Text Animation */
+    .text-rotate {
+      position: relative;
+      height: 3.5rem;
+      overflow: hidden;
+    }
+
+    .text-rotate span {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(100%);
+      animation: rotateText 6s linear infinite;
+    }
+
+    .text-rotate span:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .text-rotate span:nth-child(2) {
+      animation-delay: 3s;
+    }
+
+    @keyframes rotateText {
+      0% {
+        opacity: 0;
+        transform: translateY(100%);
+      }
+
+      10%,
+      40% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      50%,
+      100% {
+        opacity: 0;
+        transform: translateY(-100%);
+      }
+    }
+
+    /* Image Fade Rotation */
+    .fade-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .fade-img.active {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-white scroll-smooth min-h-screen">
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full z-50 bg-black shadow-md">
+    <div id="site-header"></div>
+  </header>
+  <script>
+    async function loadHeader() {
+      const el = document.getElementById('site-header');
+      const html = await fetch('../header.html').then(r => r.text());
+      el.innerHTML = html;
+      const menuBtn = el.querySelector('#menu-btn');
+      const menu = el.querySelector('#menu');
+      if (menuBtn && menu) menuBtn.addEventListener('click', () => menu.classList.toggle('hidden'));
+      const links = el.querySelectorAll('.nav-link');
+      const current = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      links.forEach(a => {
+        const href = (a.getAttribute('href') || '').toLowerCase();
+        if (href === current) a.classList.add('text-gray-400','underline');
+      });
+    }
+    loadHeader();
+  </script>
+
+  <!-- Hero Section -->
+  <section class="relative flex min-h-screen items-center justify-center px-6 md:px-20 pt-[6rem]">
+
+    <!-- Social Icons -->
+    <div class="hidden md:flex flex-col fixed left-20 top-1/2 transform -translate-y-1/2 gap-6 text-2xl text-gray-400">
+      <a href="#" class="hover:text-purple-500"><i class="fab fa-github"></i></a>
+      <a href="#" class="hover:text-purple-500"><i class="fab fa-facebook"></i></a>
+      <a href="#" class="hover:text-purple-500"><i class="fab fa-linkedin"></i></a>
+      <a href="#" class="hover:text-purple-500"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:piyushkk0206@gmail.com" class="hover:text-purple-500"><i class="fas fa-envelope"></i></a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="flex flex-col md:flex-row items-center justify-center gap-8 w-full">
+
+      <!-- Rotating Images -->
+      <div class="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[590px] md:h-[590px]">
+        <img src="Profile.JPG" class="fade-img active rounded-2xl w-full h-full object-cover shadow-lg">
+        <img src="ppp.JPG" class="fade-img rounded-2xl w-full h-full object-cover shadow-lg">
+      </div>
+
+      <!-- Text -->
+      <div class="flex flex-col justify-center max-w-xl text-center md:text-left space-y-4">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold slide-text">Hello!,</h1>
+
+        <div class="text-rotate text-2xl sm:text-3xl md:text-4xl font-bold">
+          <span>I'm Piyush Kumar 👋</span>
+          <span>I'm a Web Developer 💻</span>
+        </div>
+
+        <p class="text-base sm:text-lg md:text-2xl text-gray-300">
+          CS Undergrad • Aspiring Full-Stack Developer
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 mt-4">
+          <a href="../projects.html" class="px-6 py-3 bg-gray-800 rounded-xl hover:bg-purple-500 transition">
+            View My Projects
+          </a>
+
+          <a href="#resume" class="px-6 py-3 bg-gray-800 rounded-xl hover:bg-purple-500 transition">
+            <i class="fas fa-file-alt"></i> Resume
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Rotating Image Script -->
+  <script>
+    const images = document.querySelectorAll(".fade-img");
+    let index = 0;
+
+    setInterval(() => {
+      images[index].classList.remove("active");
+      index = (index + 1) % images.length;
+      images[index].classList.add("active");
+    }, 5000);
+  </script>
+
+
+  <!-- ============================ -->
+  <!-- FLOATING LIKE BUTTON (Corrected Placement) -->
+  <!-- ============================ -->
+  <div onclick="openLikePopup()"
+    class="fixed bottom-6 right-6 bg-purple-500 text-white px-4 py-3 rounded-full shadow-lg cursor-pointer hover:bg-purple-700 transition z-50">
+    ❤️ Like This Website
+  </div>
+
+
+  <!-- ============================ -->
+  <!-- FOOTER -->
+  <!-- ============================ -->
+  <footer class="bg-black text-gray-300 pt-10 pb-2 mt-10">
+    <hr class="border-gray-700 my-3">
+
+    <div class="text-center mb-3">
+      <span id="totalLikes" class="px-3 py-2 bg-purple-500 text-white rounded-full text-sm shadow">
+        ❤️ 0 Likes
+      </span>
+    </div>
+
+    <p class="text-center text-gray-500 text-sm">
+      © <span id="currentYear"></span> Piyush Kumar. All Rights Reserved.
+    </p>
+  </footer>
+
+
+  <!-- ============================ -->
+  <!-- POPUP (must be OUTSIDE footer) -->
+  <!-- ============================ -->
+  <div id="likePopup"
+    class="fixed inset-0 bg-black/50 flex justify-center items-center hidden z-[60]">
+    <div class="bg-purple-400 text-white p-6 rounded-xl w-80 shadow-xl border border-gray-700">
+      <h3 class="text-xl font-bold mb-3">Leave a Like ❤️</h3>
+
+      <input id="likeName" class="w-full border border-gray-600 bg-black p-2 rounded mb-3"
+        placeholder="Your Name (optional)">
+
+      <textarea id="likeMessage" class="w-full border border-gray-600 bg-black p-2 rounded mb-3"
+        placeholder="Your Message..."></textarea>
+
+      <button onclick="submitLike()"
+        class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">
+        Send ❤️
+      </button>
+
+      <button onclick="closeLikePopup()"
+        class="w-full mt-2 bg-gray-800 py-2 rounded hover:bg-gray-700 transition">
+        Cancel
+      </button>
+    </div>
+  </div>
+
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabaseClient.js"></script>
+
+  <script>
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    function openLikePopup() {
+      document.getElementById("likePopup").classList.remove("hidden");
+    }
+
+    function closeLikePopup() {
+      document.getElementById("likePopup").classList.add("hidden");
+    }
+
+    async function submitLike() {
+      let name = document.getElementById("likeName").value;
+      let message = document.getElementById("likeMessage").value;
+
+      if (message.trim() === "") {
+        alert("Please write a message ❤️");
+        return;
+      }
+
+      await supabase.from("likes_website").insert([{ name, message }]);
+
+      alert("Thank you for your like ❤️");
+      closeLikePopup();
+      loadLikeCount();
+
+      document.getElementById("likeName").value = "";
+      document.getElementById("likeMessage").value = "";
+    }
+
+    async function loadLikeCount() {
+      const { data } = await supabase.from("likes_website").select("*");
+      document.getElementById("totalLikes").innerText = `❤️ ${data.length} Likes`;
+    }
+
+    document.addEventListener("DOMContentLoaded", loadLikeCount);
+  </script>
+
+</body>
+
+</html>
