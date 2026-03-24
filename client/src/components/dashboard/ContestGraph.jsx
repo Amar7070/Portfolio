@@ -27,6 +27,17 @@ const ContestGraph = ({ contestData }) => {
         yTicks.push(i);
     }
 
+    if (!isMounted) {
+        return (
+            <div className="bg-[#0a0a0c] p-6 rounded-xl border border-white/10 flex items-center justify-center" style={{ height: '300px' }}>
+                <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-2 border-[#E6A700]/30 border-t-[#E6A700] animate-spin rounded-full" />
+                    <p className="text-[10px] font-mono tracking-widest text-[#E6A700]/60 uppercase">Calibrating Chart Vector...</p>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
