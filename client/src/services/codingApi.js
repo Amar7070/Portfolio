@@ -3,7 +3,7 @@ import axios from "axios";
 // Absolute backend URL for cross-domain support
 const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || (window.location.hostname === 'localhost'
     ? 'http://localhost:5000'
-    : 'https://portfolio-ewq8.onrender.com');
+    : 'https://portfolio-0fu6.onrender.com');
 
 // Configure axial base
 const api = axios.create({
