@@ -58,7 +58,7 @@ const FlipCard = () => {
                     <div className="flex justify-between items-start z-10">
                         <div className="flex items-center gap-4">
                             <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/10 bg-white/5 p-1 group-hover:border-blue-500/50 transition-colors">
-                                <img src="/images/Profile.jpg" alt="Amar Sahani" className="w-full h-full object-cover object-top rounded-xl" />
+                                <img src="/images/ppp.jpg" alt="Amar Sahani" className="w-full h-full object-cover object-top rounded-xl" />
                             </div>
                             <div>
                                 <h3 className="text-lg font-black text-white leading-none mb-1">Amar Sahani</h3>
