@@ -15,7 +15,7 @@ const TrinetraIcon = ({ className }) => (
 
 const BACKEND_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:5000' 
-    : 'https://portfolio-ewq8.onrender.com';
+    : 'https://portfolio-0fu6.onrender.com';
 
 // --- Markdown Formatter (Gold/Cyber Theme) ---
 const MarkdownContent = ({ content }) => (
