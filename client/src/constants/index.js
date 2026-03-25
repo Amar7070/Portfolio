@@ -27,33 +27,46 @@ export const certifications = [
     title: "Build Generative AI Apps and Solutions with No Code Tools",
     issuer: "Infosys Springboard",
     date: "2025",
-    link: "#",
+    link: "https://drive.google.com/file/d/1Y-DdB9KEzJNNraetmiwNHXMdVNZBsUWX/view?usp=sharing",
     description: "Learned techniques to implement and leverage generative AI tools for modern software development.",
-    skills: ["Generative AI", "No Code", "Solutions Architecture"]
+    skills: ["Generative AI", "No Code", "Solutions Architecture"],
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Java Spring Boot",
     issuer: "Programming Pathshala",
     date: "Jul 2025",
-    link: "#",
+    link: "https://drive.google.com/file/d/1suM9RJxbtIdjI81GUS_uSaHi4FNuPwRC/view",
     description: "Intensive training in backend engineering specializing in Spring Boot REST APIs, MVC structure, and OOPs.",
-    skills: ["Java", "Spring Boot", "REST API", "MVC", "OOPs"]
+    skills: ["Java", "Spring Boot", "REST API", "MVC", "OOPs"],
+    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Cloud Computing",
     issuer: "NPTEL",
     date: "2024",
-    link: "#",
+    link: "https://drive.google.com/file/d/1HowvArAJVg6y5yJDZGDs_CzkPE2JV7jM/view?usp=sharing",
     description: "Comprehensive understanding of cloud infrastructures, virtualization, and distributed systems.",
-    skills: ["Cloud Computing", "Distributed Systems"]
+    skills: ["Cloud Computing", "Distributed Systems"],
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "The Bits and Bytes of Computer Networking",
+    issuer: "Coursera",
+    date: "2024",
+    link: "https://drive.google.com/file/d/1pNeFENdwOcxQi5zX6pkY5nXpx1J-EDqu/view?usp=sharing",
+    description: "Comprehensive understanding of computer networking, TCP/IP, and HTTP.",
+    skills: ["Computer Networking", "TCP/IP", "HTTP"],
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Object Oriented Programming",
     issuer: "IamNeo",
     date: "2024",
-    link: "#",
+    link: "https://drive.google.com/file/d/1F0nt-bQLpOx9IbFlUfdi5PexxOBOwHaF/view?usp=drive_link",
     description: "Advanced assessment and validation of object-oriented programming methodologies.",
-    skills: ["OOPs", "Design Patterns", "Software Architecture"]
+    skills: ["OOPs", "Design Patterns", "Software Architecture"],
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800"
   }
 ];
 
@@ -120,7 +133,7 @@ export const projects = [
     github_link: "https://github.com/Amar7070/shopping-cart",
     project_link: "#",
     image_url: "/images/ShoppingCart.png"
-  }, 
+  },
   {
     id: "03",
     title: "Page Replacement Simulator",

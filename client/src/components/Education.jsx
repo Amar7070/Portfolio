@@ -101,52 +101,79 @@ const Education = () => {
           </div>
         </div>
 
-        {/* ── Verified Credentials Grid ── */}
+        {/* ── Verified Credentials Slider ── */}
         <div className="pt-20 border-t border-white/5 relative">
           <div className="absolute top-0 right-[20%] w-[300px] h-[300px] bg-[#E6A700]/5 blur-[100px] pointer-events-none" />
 
-          <h3 className="text-3xl md:text-4xl font-black text-white mb-10 uppercase tracking-tighter">Verified <span className="text-[#E6A700]">Credentials.</span></h3>
+          <h3 className="text-3xl md:text-4xl font-black text-white mb-10 uppercase tracking-tighter">
+            Verified <span className="text-[#E6A700]">Credentials.</span>
+          </h3>
 
-          <div className="grid md:grid-cols-2 gap-6 relative z-10 w-full">
-            {certifications.map((cert, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.98, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: idx * 0.1 }}
-                onClick={() => setSelectedItem({ ...cert, type: 'cert' })}
-                className="group w-full bg-[#0A0A0E] border border-white/10 hover:border-[#E6A700]/50 p-6 md:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 overflow-hidden relative cursor-pointer shadow-lg hover:shadow-[0_10px_30px_rgba(230,167,0,0.1)] transition-all"
-              >
-                {/* Hover Glow */}
-                <div className="absolute -inset-10 bg-gradient-to-r from-transparent via-[#E6A700]/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rotate-12" />
-
-                <div className="flex flex-col relative z-10 gap-2">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="text-[#E6A700]"><FaAward size={20} /></div>
-                    <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest">{cert.date} // {cert.issuer}</span>
-                  </div>
-                  <h4 className="text-xl font-bold text-white tracking-tight group-hover:text-[#E6A700] transition-colors">{cert.title}</h4>
-                </div>
-
-                <a 
-                  href={cert.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="relative z-10 flex shrink-0 border border-white/10 hover:border-[#E6A700] bg-white/[0.02] hover:bg-[#E6A700] text-slate-400 hover:text-black transition-all p-3 rounded-full items-center justify-center lg:self-center w-max"
-                  title="View Official Document"
+          <div className="relative">
+            <div 
+              className="flex gap-6 overflow-x-auto pb-10 no-scrollbar snap-x snap-mandatory px-2"
+            >
+              {certifications.map((cert, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  className="flex-shrink-0 w-[240px] md:w-[320px] bg-[#0f0f11] rounded-2xl overflow-hidden border border-white/5 hover:border-[#E6A700]/30 transition-all duration-300 shadow-xl group snap-start"
                 >
-                  <FaExternalLinkAlt size={12} />
-                </a>
-              </motion.div>
-            ))}
+                  <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                    <img 
+                      src={cert.image} 
+                      alt={cert.title}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-100"
+                      onError={(e) => {
+                        e.target.src = "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop";
+                        e.target.className = "w-full h-full object-cover opacity-20 grayscale";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <a 
+                        href={cert.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="bg-white text-black px-5 py-2 rounded-full font-bold text-xs transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-slate-200 shadow-xl"
+                      >
+                        View PDF
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className="p-5 flex flex-col bg-[#0f0f11] min-h-[120px] justify-between">
+                    <h4 className="text-[14px] font-bold text-white mb-2 leading-tight group-hover:text-[#E6A700] transition-colors">
+                      {cert.title}
+                    </h4>
+                    <div className="flex items-center justify-between mt-auto">
+                      <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest">
+                        {cert.issuer}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500 font-bold uppercase">
+                        {cert.date}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="h-1 w-full bg-gradient-to-r from-transparent via-[#E6A700]/20 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="flex flex-col items-center gap-2 mt-4 pointer-events-none">
+              <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+              <span className="text-[8px] font-mono uppercase tracking-[0.5em] text-slate-500 animate-pulse">
+                Swipe Horizontal ⟷
+              </span>
+            </div>
           </div>
         </div>
 
       </div>
 
-      {/* ── Fullscreen Details Modal for Credentials ── */}
+      {/* Detail Modal */}
       <AnimatePresence>
         {selectedItem && selectedItem.type === 'cert' && (
           <motion.div
@@ -154,7 +181,6 @@ const Education = () => {
             className="fixed inset-0 z-[100000] flex items-center justify-center px-4 py-8"
           >
             <div className="absolute inset-0 bg-[#050608]/90 backdrop-blur-md" onClick={() => setSelectedItem(null)} />
-
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.9, y: 20 }}
               className="relative w-full max-w-2xl bg-[#0A0A0E] border border-white/10 rounded-sm shadow-2xl flex flex-col max-h-full"
@@ -168,15 +194,12 @@ const Education = () => {
                   <FaTimes size={16} />
                 </button>
               </div>
-
               <div className="p-6 md:p-8 overflow-y-auto no-scrollbar">
-                {/* Abstract Certification Graphic */}
-                <div className="w-full h-32 md:h-48 bg-[rgba(230,167,0,0.05)] border border-[#E6A700]/20 flex flex-col items-center justify-center mb-8 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] relative overflow-hidden">
+                <div className="w-full h-32 md:h-48 bg-[rgba(230,167,0,0.05)] border border-[#E6A700]/20 flex flex-col items-center justify-center mb-8 relative overflow-hidden">
                   <FaAward size={64} className="text-[#E6A700] opacity-30 animate-pulse absolute" />
-                  <span className="text-[10px] font-mono tracking-[0.3em] font-bold text-[#E6A700] uppercase relative z-10 z-20">VERIFIED DOMAIN IDENTIFIER</span>
+                  <span className="text-[10px] font-mono tracking-[0.3em] font-bold text-[#E6A700] uppercase relative z-10">VERIFIED DOMAIN IDENTIFIER</span>
                   <h2 className="text-2xl font-black text-white uppercase tracking-tighter mt-2 relative z-10 text-center px-4">{selectedItem.title}</h2>
                 </div>
-
                 <div className="space-y-6">
                   <div>
                     <span className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest block mb-2">Issuing Authority</span>
@@ -198,7 +221,6 @@ const Education = () => {
                       </div>
                     </div>
                   )}
-
                   {selectedItem.link && (
                     <div className="pt-4 mt-2 border-t border-white/5">
                       <a href={selectedItem.link} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center w-full gap-3 px-6 py-4 bg-[#E6A700] hover:bg-[#FCD34D] text-black text-[11px] font-mono font-black uppercase tracking-widest rounded-sm transition-colors shadow-[0_0_20px_rgba(230,167,0,0.2)] hover:shadow-[0_0_30px_rgba(230,167,0,0.4)]">

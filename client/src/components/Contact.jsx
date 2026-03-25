@@ -103,7 +103,7 @@ const Contact = () => {
 
                             <div className="mb-10 w-full">
                                 <h3 className="text-3xl font-black text-white tracking-tight leading-none mb-3">Amar Sahani</h3>
-                                <p className="text-[10px] font-mono text-[#E6A700] uppercase tracking-[0.3em] font-bold border-b border-white/5 pb-6">Full Stack Architecture // SE</p>
+                                <p className="text-[10px] font-mono text-[#E6A700] uppercase tracking-[0.3em] font-bold border-b border-white/5 pb-6">Full Stack Architecture</p>
                             </div>
 
                             <div className="w-full space-y-6">
@@ -117,7 +117,7 @@ const Contact = () => {
 
                                 <div className="flex items-center gap-4 bg-black/40 border border-white/5 p-4 rounded-sm">
                                     <FaMapMarkerAlt className="text-[#E6A700]" size={14} />
-                                    <span className="text-[11px] font-bold text-slate-300">India // Global Remote</span>
+                                    <span className="text-[11px] font-bold text-slate-300">India</span>
                                 </div>
 
                                 <div className="pt-6 flex gap-4">
@@ -148,10 +148,10 @@ const Contact = () => {
 
                             <form onSubmit={handleSubmit} className="relative z-10 w-full">
                                 <div className="grid md:grid-cols-2 gap-8">
-                                    <ContactInput label="Identity_ID" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Full Name" />
-                                    <ContactInput label="Return_Channel" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="email@address.net" />
+                                    <ContactInput label="Full Name" type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Your Name" />
+                                    <ContactInput label="Email_ID" type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Your Email" />
                                 </div>
-                                <ContactInput label="Message_Buffer" type="textarea" name="message" value={formData.message} onChange={handleChange} placeholder="Detail your project or proposal..." />
+                                <ContactInput label="Message" type="textarea" name="message" value={formData.message} onChange={handleChange} placeholder="Type your message here..." />
 
                                 <button
                                     type="submit"
