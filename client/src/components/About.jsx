@@ -86,7 +86,7 @@ const About = () => {
                                 <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
                                     <motion.div 
                                         initial={{ width: 0 }}
-                                        whileInView={{ width: "98.4%" }}
+                                        whileInView={{ width: "90.4%" }}
                                         transition={{ duration: 1.5, ease: "easeOut" }}
                                         className="h-full bg-gradient-to-r from-[#E6A700] to-yellow-600 shadow-[0_0_10px_#E6A700]"
                                     />
