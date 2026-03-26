@@ -116,7 +116,7 @@ export const projects = [
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
     github_link: "https://github.com/Ashutosh-kumar-2004/Time-Analysis-and-Productivity",
     project_link: "https://productivity-tracker-aky.vercel.app/",
-    image_url: "/images/timeAnalysis.png"
+    image_url: "images/timeAnalysis.png"
   },
   {
     id: "02",
@@ -132,7 +132,7 @@ export const projects = [
     tech: ["PHP", "MySQL", "JavaScript", "Tailwind CSS"],
     github_link: "https://github.com/Amar7070/shopping-cart",
     project_link: "#",
-    image_url: "/images/ShoppingCart.png"
+    image_url: "images/ShoppingCart.png"
   },
   {
     id: "03",
@@ -148,7 +148,7 @@ export const projects = [
     tech: ["JavaScript", "Chart.js", "HTML", "CSS"],
     github_link: "https://github.com/Amar7070/Page-Replacement-Algorithm-Simulator",
     project_link: "https://page-replacement-algorithm-simulato-blush.vercel.app/",
-    image_url: "/images/pageReplace.png"
+    image_url: "images/pageReplace.png"
   }
 ];
 
