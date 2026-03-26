@@ -33,13 +33,13 @@ const About = () => {
 
                         <div className="space-y-6 text-slate-400 text-base md:text-lg leading-relaxed font-medium">
                             <p>
-                                I am Amar Sahani, a Full-Stack Engineer who finds precision in code and elegance in architecture. My journey is driven by a deep curiosity about how systems scale and how technology can be used to solve complex real-world problems.
+                                I’m Amar Sahani, a Full-Stack Engineer focused on building scalable web applications and solving real-world problems through code.
                             </p>
                             <p>
-                                Specializing in the <span className="text-white font-bold">MERN stack</span> and <span className="text-white font-bold">PHP</span>, I bridge the gap between robust backend logic and immersive, high-performance user interfaces. I treat every project not just as a task, but as an engineering milestone.
+                                I work primarily with the <span className="text-white font-bold">MERN stack</span> and <span className="text-white font-bold">PHP</span>, developing robust backend systems and interactive, high-performance user interfaces. My focus is on writing clean, efficient code and designing systems that are reliable and easy to maintain.
                             </p>
-                            <p className="border-l-2 border-[#E6A700]/40 pl-6 italic text-slate-500">
-                                "My philosophy is simple: write code that is as resilient as it is readable, and build systems that are as scalable as they are stunning."
+                            <p>
+                                I enjoy exploring system design and continuously improving my problem-solving skills, aiming to build applications that are both practical and impactful.
                             </p>
                         </div>
                     </motion.div>
@@ -61,16 +61,18 @@ const About = () => {
                             
                             <div className="grid grid-cols-2 gap-8 relative z-10">
                                 {[
-                                    { label: "Experience", value: "02+", suffix: "Years", icon: <FaUser />, color: "#E6A700" },
+                                    { label: "Experience", value: "2+", suffix: "Years in Development", icon: <FaUser />, color: "#E6A700" },
                                     { label: "Projects", value: "15+", suffix: "Completed", icon: <FaRocket />, color: "#3B82F6" },
-                                    { label: "Philosophy", value: "Logic", suffix: "Driven", icon: <FaCompass />, color: "#10B981" },
-                                    { label: "Vision", value: "Future", suffix: "Focused", icon: <FaLightbulb />, color: "#F59E0B" }
+                                    { label: "Methodology", value: "Problem Solving", suffix: "Focused", icon: <FaCompass />, color: "#10B981" },
+                                    { label: "LEARNING & BUILDING", value: "Growth Focus", suffix: "Continuous", icon: <FaLightbulb />, color: "#F59E0B" }
                                 ].map((stat, i) => (
                                     <div key={i} className="flex flex-col">
                                         <div className={`w-10 h-10 flex items-center justify-center rounded-lg bg-white/[0.03] border border-white/5 mb-4 text-xl transition-all duration-500 group-hover:bg-white/[0.06] group-hover:border-white/10`} style={{ color: stat.color }}>
                                             {stat.icon}
                                         </div>
-                                        <div className="text-3xl font-black text-white tracking-tighter mb-1">{stat.value}</div>
+                                        <div className={`${stat.value.length > 4 ? 'text-xl font-bold' : 'text-3xl font-black'} text-white tracking-tighter mb-1 transition-all duration-300`}>
+                                            {stat.value}
+                                        </div>
                                         <div className="text-[9px] font-mono text-slate-500 uppercase tracking-widest">{stat.label} // {stat.suffix}</div>
                                     </div>
                                 ))}
@@ -78,9 +80,9 @@ const About = () => {
 
                             <div className="mt-12 pt-8 border-t border-white/5 flex flex-col gap-4">
                                 <div className="flex justify-between items-center">
-                                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Neural Link Capacity</span>
-                                    <span className="text-[10px] font-mono text-[#E6A700] font-bold">98.4%</span>
-                                </div>
+                                    <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest">System Efficiency</span>
+                                    <span className="text-[10px] font-mono text-[#E6A700] font-bold">90.4%</span>
+                                </div> 
                                 <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
                                     <motion.div 
                                         initial={{ width: 0 }}
