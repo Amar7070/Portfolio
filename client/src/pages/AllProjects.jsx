@@ -137,10 +137,10 @@ const AllProjects = () => {
                       <div className="grid lg:grid-cols-2 gap-0">
                           {/* Left Side: Clear Photo & Links */}
                           <div className="flex flex-col border-b lg:border-b-0 lg:border-r border-white/10 bg-white/[0.01]">
-                              <div className="w-full aspect-[16/10] lg:h-[400px] relative overflow-hidden border-b border-white/10 p-2 md:p-4 pb-0">
-                                  <div className="w-full h-full rounded-t-lg overflow-hidden border border-white/10 border-b-0 shadow-2xl relative">
+                              <div className="w-full relative overflow-hidden border-b border-white/10 p-2 md:p-4 pb-0">
+                                  <div className="w-full min-h-[300px] lg:min-h-[450px] rounded-t-lg overflow-hidden border border-white/10 border-b-0 shadow-2xl relative flex items-center justify-center bg-black/40">
                                      {/* Crystal clear image, NO grayscale or harsh contrasts added */}
-                                      <img src={selectedProject.image_url} alt={selectedProject.title} className="w-full h-full object-cover object-top" />
+                                      <img src={selectedProject.image_url} alt={selectedProject.title} className="w-full h-full object-contain" />
                                       {/* Top browser bar decoration */}
                                       <div className="absolute top-0 left-0 right-0 h-6 bg-[#0A0A0E]/80 backdrop-blur-md border-b border-white/10 flex items-center px-3 gap-1.5 pointer-events-none">
                                           <div className="w-2 h-2 rounded-full border border-white/20 bg-red-500/20" />
