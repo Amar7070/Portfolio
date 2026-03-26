@@ -109,10 +109,10 @@ const ProfileCards = ({ data }) => {
             link: `https://leetcode.com/${USERNAMES.leetcode}/`,
             delay: 0.2,
             stats: [
-                { label: "Solved", value: safeData.leetcode?.totalSolved || 104 },
-                { label: "Easy", value: safeData.leetcode?.easySolved || 58 },
-                { label: "Peak Rating", value: safeData.contests?.peakRating || 1500 },
-                { label: "Med/Hard", value: (safeData.leetcode?.mediumSolved || 0) + (safeData.leetcode?.hardSolved || 0) || 46 }
+                { label: "Solved", value: safeData.leetcode?.totalSolved || 405 },
+                { label: "Easy", value: safeData.leetcode?.easySolved || 161 },
+                { label: "Peak Rating", value: safeData.contests?.peakRating || 1547 },
+                { label: "Med/Hard", value: (safeData.leetcode?.mediumSolved || 201) + (safeData.leetcode?.hardSolved || 43) || 244 }
             ]
         },
         {
@@ -123,10 +123,10 @@ const ProfileCards = ({ data }) => {
             link: `https://www.codechef.com/users/${USERNAMES.codechef}`,
             delay: 0.3,
             stats: [
-                { label: "Rating", value: safeData.codechef?.currentRating || 1410 },
-                { label: "Stars", value: safeData.codechef?.stars || '2', suffix: "★" },
-                { label: "Global", value: safeData.codechef?.globalRank || 43239 },
-                { label: "Country", value: safeData.codechef?.countryRank || 40266 }
+                { label: "Rating", value: 1410 },
+                { label: "Stars", value: '2', suffix: "★" },
+                { label: "Global", value: 43239 },
+                { label: "Country", value: 40266 }
             ]
         },
         {
