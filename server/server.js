@@ -7,6 +7,7 @@ import fs from 'fs';
 import { fileURLToPath } from 'url';
 import axios from 'axios';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import nodemailer from 'nodemailer';
 import { resumeData } from './data.js';
 
 // Simple in-memory cache to avoid burning API rate limits
@@ -119,15 +120,65 @@ app.post('/api/chat', async (req, res) => {
     }
 });
 
-// Contact Form Endpoint (Placeholder for future nodemailer implementation)
+// Contact Form Endpoint - Real Email sending with Nodemailer
 app.post('/api/contact', async (req, res) => {
-    const { email, message } = req.body;
-    console.log(`[Contact] Transmission from ${email}: ${message}`);
+    const { name, email, subject, message } = req.body;
+    console.log(`[Contact] Transmission started from ${name} (${email})`);
 
-    // Simulate processing time
-    setTimeout(() => {
-        res.status(200).json({ success: true, message: 'Data transmitted successfully' });
-    }, 1000);
+    // Verify presence of all required fields
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: "Mission-critical data missing: name, email, and message are required." });
+    }
+
+    try {
+        // --- 1. CONFIGURATION (SMTP) ---
+        // Warning: This requires EMAIL_USER and EMAIL_PASS (App Password) in your .env
+        const transporter = nodemailer.createTransport({
+            service: 'gmail', // Or use host/port for professional SMTP
+            auth: {
+                user: process.env.EMAIL_USER || 'amarsahani0777@gmail.com',
+                pass: process.env.EMAIL_PASS // MUST use an App Password for Gmail
+            }
+        });
+
+        // --- 2. PACKAGING (Email Body) ---
+        const mailOptions = {
+            from: `"${name}" <${process.env.EMAIL_USER || 'amarsahani0777@gmail.com'}>`, // From must be AUTH user
+            to: 'amarsahani0777@gmail.com', // Where you will receive the message
+            replyTo: email, // Click Reply to answer the visitor directly
+            subject: `[Portfolio Insight] New Transmission from ${name}: ${subject || 'No Subject'}`,
+            html: `
+                <div style="font-family: 'Inter', sans-serif; background: #0A0A0E; color: #E2E8F0; padding: 40px; border: 1px solid #E6A700; border-radius: 8px;">
+                    <h2 style="color: #E6A700; border-bottom: 1px solid rgba(230,167,0,0.3); padding-bottom: 10px;">New Portfolio Inquiry</h2>
+                    <p><strong>Visitor:</strong> ${name}</p>
+                    <p><strong>Email:</strong> ${email}</p>
+                    <p><strong>Subject:</strong> ${subject || 'General Inquiry'}</p>
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 4px; font-style: italic; line-height: 1.6;">
+                        "${message}"
+                    </div>
+                    <p style="margin-top: 30px; font-size: 11px; opacity: 0.5;">This transmission originated from your official portfolio architecture.</p>
+                </div>
+            `
+        };
+
+        // --- 3. DISPATCH ---
+        await transporter.sendMail(mailOptions);
+        console.log(`[System] Transmission successful. Message sent to owner.`);
+        
+        res.status(200).json({ 
+            success: true, 
+            message: 'Transmission successfully verified and sent to architecture owner.' 
+        });
+
+    } catch (error) {
+        console.error("[Nodemailer Error]", error);
+        
+        // Critical Fallback: even if email fails, we might want to log it and tell user it was internal error
+        res.status(500).json({ 
+            error: "Neural link relay failed. Check server environment configuration (SMTP).",
+            details: error.message
+        });
+    }
 });
 
 // Coding Platform API Proxies

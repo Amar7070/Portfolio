@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaMapMarkerAlt, FaCheck, FaArrowRight, FaCopy, FaUserShield } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
+import axios from 'axios';
 import InboundContactBackground from './InboundContactBackground';
 
 const ContactInput = ({ label, type, name, value, onChange, placeholder, required = true }) => (
@@ -43,16 +44,38 @@ const Contact = () => {
     const [submitStatus, setSubmitStatus] = useState(null);
     const [copied, setCopied] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setIsSubmitting(true);
-        setTimeout(() => {
+        setSubmitStatus(null);
+
+        try {
+            // Absolute backend URL for cross-domain support (following codingApi.js pattern)
+            const BACKEND_URL = import.meta.env.VITE_API_BASE_URL || (window.location.hostname === 'localhost'
+                ? 'http://localhost:5000'
+                : ''); // Relative for production if hosted together
+
+            const response = await axios.post(`${BACKEND_URL}/api/contact`, formData);
+
+            if (response.data.success) {
+                setSubmitStatus('success');
+                setFormData({ name: '', email: '', subject: '', message: '' });
+                confetti({
+                    particleCount: 120,
+                    spread: 80,
+                    origin: { y: 0.6 },
+                    colors: ['#E6A700', '#ffffff', '#0A0A0E']
+                });
+            }
+        } catch (error) {
+            console.error("Transmission Failure:", error);
+            setSubmitStatus('error');
+        } finally {
             setIsSubmitting(false);
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 }, colors: ['#E6A700', '#ffffff', '#0A0A0E'] });
-            setTimeout(() => setSubmitStatus(null), 5000);
-        }, 2500);
+            if (submitStatus === 'success') {
+                setTimeout(() => setSubmitStatus(null), 5000);
+            }
+        }
     };
 
     const handleChange = (e) => setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -169,6 +192,10 @@ const Contact = () => {
                                         ) : submitStatus === 'success' ? (
                                             <motion.div key="success" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="flex items-center justify-center gap-2">
                                                 <FaCheck /> Transmitted
+                                            </motion.div>
+                                        ) : submitStatus === 'error' ? (
+                                            <motion.div key="error" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} className="flex items-center justify-center gap-2 text-red-500">
+                                                Neural Link Failed
                                             </motion.div>
                                         ) : (
                                             <motion.div key="idle" className="flex items-center justify-center gap-3">
