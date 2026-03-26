@@ -133,7 +133,7 @@ const CodingDashboard = () => {
               <div className="bg-white/[0.02] border border-white/5 hover:border-[#E6A700]/30 transition-colors rounded-sm p-5 relative overflow-hidden group hover:-translate-y-1">
                 <span className="text-slate-500 font-mono text-[9px] uppercase tracking-widest mb-2 block group-hover:text-[#E6A700]">Peak Rating</span>
                 <div className="text-3xl font-mono font-black text-white group-hover:text-[#E6A700] transition-colors">
-                  {data.contests?.topRating?.toFixed(0) || '1500'}
+                  {data.contests?.peakRating || '1547'}
                 </div>
               </div>
               <div className="bg-white/[0.02] border border-white/5 hover:border-[#E6A700]/30 transition-colors rounded-sm p-5 group hover:-translate-y-1">
