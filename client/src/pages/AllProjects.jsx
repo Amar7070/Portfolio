@@ -192,21 +192,21 @@ const AllProjects = () => {
                               </div>
 
                               {/* Features Point by Point */}
-                              <div className="flex-1">
-                                  <h4 className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">Core Features & Architecture</h4>
-                                  {selectedProject.features && selectedProject.features.length > 0 ? (
-                                      <ul className="flex flex-col gap-4">
-                                          {selectedProject.features.map((feature, i) => (
-                                              <li key={i} className="flex items-start gap-4">
-                                                  <div className="w-1.5 h-1.5 mt-2 rounded-sm bg-[#E6A700] shrink-0" />
-                                                  <span className="text-slate-300 text-sm font-mono leading-relaxed">{feature}</span>
-                                              </li>
-                                          ))}
-                                      </ul>
-                                  ) : (
-                                      <p className="text-slate-300 text-sm font-mono leading-relaxed border-l-2 border-[#E6A700]/50 pl-4">{selectedProject.description}</p>
-                                  )}
-                              </div>
+                                    <div className="flex-1">
+                                        <h4 className="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest mb-4 border-b border-white/10 pb-2">Core Features & Architecture</h4>
+                                        {selectedProject.features && selectedProject.features.length > 0 ? (
+                                            <ul className="flex flex-col gap-4">
+                                                {selectedProject.features.map((feature, i) => (
+                                                    <li key={i} className="flex items-start gap-4">
+                                                        <div className="w-1.5 h-1.5 mt-2 rounded-sm bg-[#E6A700] shrink-0" />
+                                                        <span className="text-slate-300 text-sm font-mono leading-relaxed">{feature}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        ) : (
+                                            <p className="text-slate-300 text-sm font-mono leading-relaxed border-l-2 border-[#E6A700]/50 pl-4">{selectedProject.description}</p>
+                                        )}
+                                    </div>
                           </div>
                       </div>
                   </motion.div>

@@ -30,7 +30,7 @@ export const certifications = [
     link: "https://drive.google.com/file/d/1Y-DdB9KEzJNNraetmiwNHXMdVNZBsUWX/view?usp=sharing",
     description: "Learned techniques to implement and leverage generative AI tools for modern software development.",
     skills: ["Generative AI", "No Code", "Solutions Architecture"],
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800"
+    image: "/images/BuildAi.png"
   },
   {
     title: "Java Spring Boot",
@@ -39,7 +39,7 @@ export const certifications = [
     link: "https://drive.google.com/file/d/1suM9RJxbtIdjI81GUS_uSaHi4FNuPwRC/view",
     description: "Intensive training in backend engineering specializing in Spring Boot REST APIs, MVC structure, and OOPs.",
     skills: ["Java", "Spring Boot", "REST API", "MVC", "OOPs"],
-    image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
+    image: "/images/springboot.png"
   },
   {
     title: "Cloud Computing",
@@ -48,7 +48,7 @@ export const certifications = [
     link: "https://drive.google.com/file/d/1HowvArAJVg6y5yJDZGDs_CzkPE2JV7jM/view?usp=sharing",
     description: "Comprehensive understanding of cloud infrastructures, virtualization, and distributed systems.",
     skills: ["Cloud Computing", "Distributed Systems"],
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&q=80&w=800"
+    image: "/images/nptel.png"
   },
   {
     title: "The Bits and Bytes of Computer Networking",
@@ -57,7 +57,7 @@ export const certifications = [
     link: "https://drive.google.com/file/d/1pNeFENdwOcxQi5zX6pkY5nXpx1J-EDqu/view?usp=sharing",
     description: "Comprehensive understanding of computer networking, TCP/IP, and HTTP.",
     skills: ["Computer Networking", "TCP/IP", "HTTP"],
-    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=800"
+    image: "/images/bits.png"
   },
   {
     title: "Object Oriented Programming",
@@ -66,7 +66,7 @@ export const certifications = [
     link: "https://drive.google.com/file/d/1F0nt-bQLpOx9IbFlUfdi5PexxOBOwHaF/view?usp=drive_link",
     description: "Advanced assessment and validation of object-oriented programming methodologies.",
     skills: ["OOPs", "Design Patterns", "Software Architecture"],
-    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800"
+    image: "/images/oops.png"
   }
 ];
 
@@ -108,10 +108,9 @@ export const projects = [
     category: "Full Stack",
     description: "Full-stack application tracking real-time productivity. Built RESTful APIs with Node.js/Express, a MongoDB schema for daily logs, and an interactive React dashboard visualizing productivity trends.",
     features: [
-      "Built resilient RESTful APIs with Node.js and Express to track daily workflows",
-      "Designed an optimized MongoDB schema to capture detailed, time-stamped activity logs",
-      "Developed an interactive dashboard in React.js for parsing and visualizing user productivity trends",
-      "Implemented engaging dynamic charts to isolate time inefficiencies"
+      "Identified time-wasting habits through real-time activity tracking and analysis.",
+      "Engineered a full-stack MERN system with Node.js APIs and a React dashboard.",
+      "Delivered actionable productivity insights via dynamic Chart.js visualizations."
     ],
     tech: ["MongoDB", "Express.js", "React.js", "Node.js"],
     github_link: "https://github.com/Ashutosh-kumar-2004/Time-Analysis-and-Productivity",
@@ -124,10 +123,9 @@ export const projects = [
     category: "Full Stack",
     description: "Responsive e-commerce platform ensuring secure cart management through PHP sessions and maintaining a scalable MySQL database for product and user information.",
     features: [
-      "Built a highly responsive front-end using HTML, Tailwind CSS, and Vanilla JavaScript",
-      "Secured cart management and user authentication states using robust PHP sessions",
-      "Engineered a scalable MySQL schema for tracking users, transactional data, and product catalogs",
-      "Implemented optimized logic ensuring real-time UI updates seamlessly matching backend states"
+      "Optimized cart management and user authentication for high-performance shopping.",
+      "Developed a scalable PHP/MySQL backend with a responsive Tailwind CSS UI.",
+      "Implemented secure session handling and real-time inventory synchronization."
     ],
     tech: ["PHP", "MySQL", "JavaScript", "Tailwind CSS"],
     github_link: "https://github.com/Amar7070/shopping-cart",
@@ -140,10 +138,9 @@ export const projects = [
     category: "Web App",
     description: "An educational graphical simulator dynamically visualizing core OS page replacement logic (FIFO, LRU, Optimal). Integrates real-time visual comparisons using Chart.js.",
     features: [
-      "Architected logic models for standard and AI-based page replacement algorithms",
-      "Integrated Chart.js to clearly visualize and contrast page fault rates dynamically",
-      "Developed execution engines in pure JavaScript preventing UI blockages during simulation",
-      "Built an intuitive dashboard for immediate algorithmic comprehension for computer science students"
+      "Simplified abstract OS memory management concepts through interactive simulation.",
+      "Visualized real-time algorithmic execution and fault calculations with Chart.js.",
+      "Architected an intuitive dashboard for immediate algorithmic comprehension."
     ],
     tech: ["JavaScript", "Chart.js", "HTML", "CSS"],
     github_link: "https://github.com/Amar7070/Page-Replacement-Algorithm-Simulator",

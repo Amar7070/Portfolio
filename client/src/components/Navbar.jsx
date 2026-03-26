@@ -36,13 +36,14 @@ const Navbar = () => {
             setScrolled(window.scrollY > 20);
             if (!isHome) return;
 
-            const sections = ['home', 'stats', 'skills', 'services', 'projects', 'contact'];
+            const sections = ['home', 'about', 'problem-solving', 'skills', 'projects', 'education', 'contact'];
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const rect = element.getBoundingClientRect();
                     if (rect.top <= window.innerHeight / 2 && rect.bottom >= window.innerHeight / 2) {
-                        const name = section === 'stats' ? 'PROFILES' : section.toUpperCase();
+                        let name = section.toUpperCase();
+                        if (section === 'problem-solving') name = 'PROFILES';
                         setActiveSection(name);
                     }
                 }
@@ -54,9 +55,9 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'HOME', href: '#home' },
-        { name: 'PROFILES', href: '#stats' },
+        { name: 'ABOUT', href: '#about' },
+        { name: 'PROFILES', href: '#problem-solving' },
         { name: 'SKILLS', href: '#skills' },
-        { name: 'SERVICES', href: '#services' },
         { name: 'PROJECTS', href: '#projects' },
         { name: 'CONTACT', href: '#contact' },
     ];

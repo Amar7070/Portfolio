@@ -13,8 +13,8 @@ const TrinetraIcon = ({ className }) => (
     </svg>
 );
 
-const BACKEND_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:5000' 
+const BACKEND_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000'
     : 'https://portfolio-0fu6.onrender.com';
 
 // --- Markdown Formatter (Gold/Cyber Theme) ---
@@ -51,7 +51,7 @@ const TypingIndicator = () => (
         <div className="flex-shrink-0 w-8 h-8 bg-white/[0.02] border border-[#E6A700]/30 rounded-sm flex items-center justify-center">
             <TrinetraIcon className="w-4 h-4 text-[#E6A700] animate-pulse" />
         </div>
-        <div className="bg-[#0A0A0E] border border-[#E6A700]/20 px-4 py-3 rounded-sm">
+        <div className="bg-[rgba(10,10,14,0.95)] border border-[#E6A700]/20 px-4 py-3 rounded-sm">
             <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#E6A700] rounded-sm animate-bounce shadow-[0_0_5px_#E6A700]" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 bg-[#E6A700] rounded-sm animate-bounce shadow-[0_0_5px_#E6A700]" style={{ animationDelay: '150ms' }} />
@@ -84,7 +84,7 @@ const Message = ({ msg }) => {
             <div className={`relative max-w-[85%] px-4 py-3
                 ${isBot
                     ? 'bg-[#0A0A0E] border border-white/10 text-slate-300 rounded-sm'
-                    : 'bg-[#1A1A14] border border-[#E6A700]/40 text-[#E6A700] rounded-sm'
+                    : 'bg-[rgba(230,167,0,0.08)] border border-[#E6A700]/30 text-[#E6A700] rounded-sm'
                 }`}
             >
                 {isBot && <div className="absolute top-0 right-0 w-8 h-8 bg-[#E6A700]/5 blur-[10px] pointer-events-none" />}
@@ -182,7 +182,7 @@ const ChatBot = () => {
                                 onClick={() => setIsOpen(true)}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="relative w-12 h-12 bg-[#0A0A0E] border border-white/20 group-hover:border-[#E6A700] text-slate-400 group-hover:text-[#E6A700] flex items-center justify-center rounded-sm transition-all shadow-[0_0_20px_rgba(230,167,0,0.1)] outline-none"
+                                className="relative w-14 h-14 bg-[#0A0A0E] border border-white/20 group-hover:border-[#E6A700] text-slate-400 group-hover:text-[#E6A700] flex items-center justify-center rounded-sm transition-all shadow-[0_0_20px_rgba(230,167,0,0.1)] outline-none"
                             >
                                 <TrinetraIcon className="w-6 h-6" />
                                 <div className="absolute top-2 right-2 w-1.5 h-1.5 bg-[#E6A700] shadow-[0_0_8px_#E6A700] rounded-sm animate-pulse" />
@@ -200,12 +200,12 @@ const ChatBot = () => {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.2 } }}
-                        className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-[9999] w-[90vw] max-w-[340px] flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_20px_rgba(230,167,0,0.1)] bg-[#050608] rounded-sm overflow-hidden border border-white/10"
-                        style={{ maxHeight: 'calc(100vh - 150px)' }}
+                        className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-[9999] w-[90vw] max-w-[400px] flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_20px_rgba(230,167,0,0.1)] rounded-sm overflow-hidden border border-white/10"
+                        style={{ maxHeight: 'calc(100vh - 120px)' }}
                     >
                         {/* ── Title bar ── */}
                         <div className="bg-[#0A0A0E] border-b border-white/10 flex items-center justify-between px-4 py-3 relative overflow-hidden">
-                            <div className="absolute inset-0 bg-[#E6A700]/5 pointer-events-none" />
+                            <div className="absolute inset-0 bg-[rgba(230,167,0,0.03)] pointer-events-none" />
 
                             <div className="flex items-center gap-3 relative z-10">
                                 <div className="flex gap-1.5">
@@ -229,8 +229,8 @@ const ChatBot = () => {
                         </div>
 
                         {/* ── Output Buffer (Messages) ── */}
-                        <div className="flex-1 overflow-y-auto relative px-4 py-6 space-y-6 no-scrollbar bg-[#050608]"
-                            style={{ minHeight: '280px', maxHeight: '360px' }}>
+                        <div className="flex-1 overflow-y-auto relative px-4 py-6 space-y-6 no-scrollbar"
+                            style={{ minHeight: '350px', maxHeight: '420px' }}>
                             <ChatbotBackground />
                             {messages.map((msg, i) => (
                                 <Message key={i} msg={msg} />

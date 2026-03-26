@@ -13,10 +13,10 @@ import ChatBot from './components/ChatBot';
 
 // Lazy Loaded Sections for Faster First Meaningful Paint
 const CodingDashboard = lazy(() => import('./components/dashboard/CodingDashboard'));
+const About = lazy(() => import('./components/About'));
 const Skills = lazy(() => import('./components/Skills'));
 const Education = lazy(() => import('./components/Education'));
 const Projects = lazy(() => import('./components/Projects'));
-const Services = lazy(() => import('./components/Services'));
 const Contact = lazy(() => import('./components/Contact'));
 
 // Lazy Loaded Secondary Pages
@@ -91,6 +91,8 @@ function App() {
                 <SectionReveal><Hero /></SectionReveal>
                 
                 {/* Other sections are Lazy for Bundle Splitting */}
+                <LazySection delay={0.1}><About /></LazySection>
+
                 <LazySection delay={0.1}>
                   <div id="problem-solving">
                     <CodingDashboard />
@@ -98,7 +100,6 @@ function App() {
                 </LazySection>
 
                 <LazySection delay={0.2}><Skills /></LazySection>
-                <LazySection delay={0.2}><Services /></LazySection>
                 <LazySection delay={0.2}><Projects /></LazySection>
                 <LazySection delay={0.2}><Education /></LazySection>
                 <LazySection delay={0.2}><Contact /></LazySection>
