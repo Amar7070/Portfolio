@@ -11,7 +11,7 @@ const CommandPalette = ({ isOpen, onClose }) => {
 
     const actions = [
         { id: 'home', title: 'Home', icon: <FaHome />, action: () => { navigate('/'); onClose(); } },
-        { id: 'projects', title: 'Projects', icon: <FaProjectDiagram />, action: () => { navigate('/projects'); onClose(); } },
+        { id: 'projects', title: 'Projects', icon: <FaProjectDiagram />, action: () => { navigate('/'); setTimeout(() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }), 100); onClose(); } },
         { id: 'lab', title: 'The Lab (Experimental)', icon: <FaSearch />, action: () => { navigate('/lab'); onClose(); } }, // Added Lab
         { id: 'about', title: 'About', icon: <FaUser />, action: () => { navigate('/'); setTimeout(() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' }), 100); onClose(); } },
         { id: 'resume', title: 'View Resume', icon: <FaFileAlt />, action: () => { window.open('/Amar_Sahani_CV.pdf', '_blank'); onClose(); } },

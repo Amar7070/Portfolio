@@ -20,7 +20,6 @@ const Services = lazy(() => import('./components/Services'));
 const Contact = lazy(() => import('./components/Contact'));
 
 // Lazy Loaded Secondary Pages
-const AllProjects = lazy(() => import('./pages/AllProjects'));
 const Now = lazy(() => import('./pages/Now'));
 const Lab = lazy(() => import('./pages/Lab'));
 const Resume = lazy(() => import('./pages/Resume'));
@@ -107,7 +106,6 @@ function App() {
             </motion.div>
           } />
 
-          <Route path="/projects" element={<Suspense fallback={<Preloader />}><AllProjects /></Suspense>} />
           <Route path="/now" element={<Suspense fallback={<Preloader />}><Now /></Suspense>} />
           <Route path="/lab" element={<Suspense fallback={<Preloader />}><Lab /></Suspense>} />
           <Route path="/resume" element={<Suspense fallback={<Preloader />}><Resume /></Suspense>} />
