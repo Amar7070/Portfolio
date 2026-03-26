@@ -200,11 +200,11 @@ const ChatBot = () => {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.95, y: 20, transition: { duration: 0.2 } }}
-                        className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-[9999] w-[90vw] max-w-[400px] flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_20px_rgba(230,167,0,0.1)] rounded-sm overflow-hidden border border-white/10"
+                        className="fixed bottom-6 right-6 lg:bottom-8 lg:right-8 z-[10001] w-[90vw] max-w-[400px] flex flex-col shadow-[0_30px_60px_rgba(0,0,0,0.8),0_0_20px_rgba(230,167,0,0.1)] rounded-sm overflow-hidden border border-white/10 bg-[#0A0A0E]"
                         style={{ maxHeight: 'calc(100vh - 120px)' }}
                     >
                         {/* ── Title bar ── */}
-                        <div className="bg-[#0A0A0E] border-b border-white/10 flex items-center justify-between px-4 py-3 relative overflow-hidden">
+                        <div className="bg-[#0A0A0E] border-b border-white/10 flex items-center justify-between px-4 py-3 relative overflow-hidden shrink-0">
                             <div className="absolute inset-0 bg-[rgba(230,167,0,0.03)] pointer-events-none" />
 
                             <div className="flex items-center gap-3 relative z-10">
@@ -229,27 +229,21 @@ const ChatBot = () => {
                         </div>
 
                         {/* ── Output Buffer (Messages) ── */}
-                        <div className="flex-1 overflow-y-auto relative px-4 py-6 space-y-6 no-scrollbar"
-                            style={{ minHeight: '350px', maxHeight: '420px' }}>
+                        <div className="flex-1 overflow-y-auto relative px-4 py-6 space-y-6 no-scrollbar bg-[#0A0A0E]"
+                            style={{ maxHeight: '450px' }}>
                             <ChatbotBackground />
                             {messages.map((msg, i) => (
                                 <Message key={i} msg={msg} />
                             ))}
-                            {isLoading && <TypingIndicator />}
-                            <div ref={messagesEndRef} className="relative z-10" />
-                        </div>
 
-                        {/* ── Input Console ── */}
-                        <div className="bg-[#0A0A0E] border-t border-white/10 p-4 flex flex-col relative z-20">
-
-                            {/* Suggestions */}
+                            {/* Suggestions - Moved inside scroll area for stability */}
                             <AnimatePresence>
                                 {messages.length <= 1 && !isLoading && (
                                     <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: 'auto' }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        className="mb-4 flex flex-wrap gap-2"
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        className="flex flex-wrap gap-2 relative z-10 pt-2"
                                     >
                                         {SUGGESTIONS.map((s, i) => (
                                             <button
@@ -264,6 +258,12 @@ const ChatBot = () => {
                                 )}
                             </AnimatePresence>
 
+                            {isLoading && <TypingIndicator />}
+                            <div ref={messagesEndRef} className="relative z-10" />
+                        </div>
+
+                        {/* ── Input Console ── */}
+                        <div className="bg-[#0A0A0E] border-t border-white/10 p-4 flex flex-col relative z-20 shrink-0">
                             <div className="relative flex items-center w-full">
                                 <span className="absolute left-3 text-[#E6A700] font-mono text-[12px] font-black pb-0.5 pointer-events-none">
                                     &gt;

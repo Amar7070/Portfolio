@@ -36,7 +36,7 @@ const About = () => {
                                 I’m Amar Sahani, a Full-Stack Engineer focused on building scalable web applications and solving real-world problems through code.
                             </p>
                             <p>
-                                I work primarily with the <span className="text-white font-bold">MERN stack</span> and <span className="text-white font-bold">PHP</span>, developing robust backend systems and interactive, high-performance user interfaces. My focus is on writing clean, efficient code and designing systems that are reliable and easy to maintain.
+                                I work primarily with the <span className="text-white font-bold">MERN stack</span> and <span className="text-white font-bold">Java Spring Boot</span>, developing robust backend systems and interactive, high-performance user interfaces. My focus is on writing clean, efficient code and designing systems that are reliable and easy to maintain.
                             </p>
                             <p>
                                 I enjoy exploring system design and continuously improving my problem-solving skills, aiming to build applications that are both practical and impactful.
