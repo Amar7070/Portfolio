@@ -56,7 +56,7 @@ const Resume = () => {
           </button>
 
           <a
-            href="https://drive.google.com/file/d/1cNHye3FhjcCC2osX0LI2a3nF_BeBbrFc/view?usp=sharing"
+            href="https://drive.google.com/file/d/12xbvkYzuut7hPzMl5sdpfZxtRoTBkHPw/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
             className="flex items-center gap-2 px-4 py-2 bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-[#E6A700]/30 rounded-sm text-slate-400 hover:text-white text-[9px] font-bold uppercase tracking-widest transition-all"
@@ -112,7 +112,7 @@ const Resume = () => {
                     Your browser has restricted native document rendering. Use the command below to access the secure PDF link directly or download for full resolution.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                    <a href="https://drive.google.com/file/d/1cNHye3FhjcCC2osX0LI2a3nF_BeBbrFc/view?usp=sharing" target="_blank" rel="noreferrer" className="px-8 py-3.5 bg-white text-black text-[10px] font-black tracking-[0.2em] uppercase rounded-sm hover:bg-[#E6A700] transition-all flex items-center gap-3">
+                    <a href="https://drive.google.com/file/d/12xbvkYzuut7hPzMl5sdpfZxtRoTBkHPw/view?usp=sharing" target="_blank" rel="noreferrer" className="px-8 py-3.5 bg-white text-black text-[10px] font-black tracking-[0.2em] uppercase rounded-sm hover:bg-[#E6A700] transition-all flex items-center gap-3">
                         <FaExternalLinkAlt size={10}/> Open Drive Link
                     </a>
                     <a href={RESUME_DOWNLOAD} className="px-8 py-3.5 bg-[#0A0A0E] border border-white/10 text-white text-[10px] font-black tracking-[0.2em] uppercase rounded-sm hover:border-[#E6A700]/50 transition-all flex items-center gap-3">
