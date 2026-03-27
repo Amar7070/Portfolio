@@ -39,8 +39,8 @@ const Education = () => {
               <span className="text-[10px] font-mono text-slate-300 tracking-[0.2em] uppercase">Path of Action</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
-              The <br />
-              <span className="text-gold-gradient bg-clip-text text-transparent pb-2 block">Karma.</span>
+              My <br />
+              <span className="text-gold-gradient bg-clip-text text-transparent pb-2 block">Learning Journey</span>
             </h2>
           </div>
           <div className="pb-4">
