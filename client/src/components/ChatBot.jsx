@@ -96,9 +96,9 @@ const Message = ({ msg }) => {
 
 const SUGGESTIONS = [
     "What is your core tech stack?",
-    "Explain your latest project.",
+    "Explain your latest project",
     "Are you open to remote work?",
-    "Show me your database skills.",
+    "Show me your database skills",
 ];
 
 const ChatBot = () => {
@@ -106,7 +106,7 @@ const ChatBot = () => {
     const [messages, setMessages] = useState([
         {
             role: 'bot',
-            text: "### SYS.AI INITIALIZED\nI am the architectural interface for Amar Sahani. Query my systems for **skills**, **projects**, or **availability**.",
+            text: "### SYS.AI INITIALIZED\nArchitectural interface for Amar Sahani is now online.\nQuery system modules: **skills**, **projects**, **availability**.",
         },
     ]);
     const [input, setInput] = useState('');
@@ -273,7 +273,7 @@ const ChatBot = () => {
                                     value={input}
                                     onChange={e => setInput(e.target.value)}
                                     onKeyDown={e => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                                    placeholder="Execute query..."
+                                    placeholder="Type a command or ask about Amar..."
                                     disabled={isLoading}
                                     className="w-full bg-[#050608] border border-white/10 focus:border-[#E6A700]/50 text-white font-mono text-[11px] pl-8 pr-12 py-3.5 outline-none transition-all placeholder-slate-600 disabled:opacity-50 rounded-sm shadow-inner"
                                 />
